@@ -4,7 +4,7 @@
 #define STORAGE_H
 
 #include <string>
-#include "../index/index.h"
+#include "storage/index.h"
 
 struct MessageHeader {
     uint32_t size;

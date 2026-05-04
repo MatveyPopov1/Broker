@@ -1,0 +1,29 @@
+# Сборка (CMake)
+build/
+cmake-build-*/
+
+# Артефакты компиляции
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Данные приложения
+data.log
+data_new.log
+index.idx
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Отладка
+core
+*.core
+*.dSYM/
