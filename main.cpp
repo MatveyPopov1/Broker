@@ -1,39 +1,35 @@
-﻿#include "storage.h"
+﻿#include "storage/storage.h"
 #include <iostream>
 
 int main() {
     Storage storage;
 
-    int choice;
-    std::string text;
+    int c;
     uint64_t id;
+    std::string text;
 
     while (true) {
-        std::cout << "\n1. Добавить сообщение\n";
-        std::cout << "2. Получить сообщение по ID\n";
-        std::cout << "0. Выход\n> ";
-
-        std::cin >> choice;
+        std::cout << "\n1 Доюавить\n2 Прочитать\n3 Удалить\n4 Скомпановать\n0 Выход\n> ";
+        std::cin >> c;
         std::cin.ignore();
 
-        if (choice == 1) {
-            std::cout << "Введите текст: ";
+        if (c == 1) {
             std::getline(std::cin, text);
-
-            uint64_t id = storage.storeMessage(text);
-            std::cout << "Сохранено с ID: " << id << std::endl;
+            id = storage.store(text);
+            std::cout << "ID: " << id << std::endl;
         }
-        else if (choice == 2) {
-            std::cout << "Введите ID: ";
+        else if (c == 2) {
             std::cin >> id;
-
-            std::string msg = storage.readMessage(id);
-            std::cout << "Сообщение: " << msg << std::endl;
+            std::cout << storage.readMessage(id) << std::endl;
         }
-        else {
-            break;
+        else if (c == 3) {
+            std::cin >> id;
+            storage.remove(id);
         }
+        else if (c == 4) {
+            storage.compact();
+            std::cout << "Уплотнено!\n";
+        }
+        else break;
     }
-
-    return 0;
 }
