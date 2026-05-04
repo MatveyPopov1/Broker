@@ -1,4 +1,4 @@
-﻿#include "storage.h"
+﻿#include "storage/storage.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <iostream>
@@ -75,7 +75,7 @@ void Storage::remove(uint64_t id) {
     index.markDeleted(id);
 }
 
-// COMPACTION (ядро 10/10)
+// COMPACTION
 void Storage::compact() {
     int new_fd = open("data_new.log", O_CREAT | O_RDWR | O_TRUNC, 0644);
 

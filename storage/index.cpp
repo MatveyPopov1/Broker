@@ -1,4 +1,4 @@
-#include "index.h"
+#include "storage/index.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <iostream>
@@ -38,7 +38,7 @@ void Index::markDeleted(uint64_t id) {
 
     map[id].deleted = 1;
 
-    write(fd, &map[id], sizeof(IndexEntry)); // append ηΰοθρό
+    write(fd, &map[id], sizeof(IndexEntry)); // append Γ§Γ Γ―Γ¨Γ±ΓΌ
     fsync(fd);
 }
 
