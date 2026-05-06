@@ -141,6 +141,9 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         activeConsumers[consumerName] = state.fd;
 
         std::cout << "Consumer connected: " << consumerName << std::endl;
+
+        replayHistory(consumerName, state.fd);
+
         return "OK connected as " + consumerName;
     }
 
@@ -250,6 +253,59 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
     return "ERROR unknown command";
 }
 
+void Server::replayHistory(const std::string& consumerName, int client_fd) {
+    auto allSubs = subscriptionManager.getAll();
+
+    uint64_t startOffset = offsetManager.get(consumerName);
+
+    std::cout << "Replaying history for " << consumerName << " from offset " << startOffset << std::endl;
+
+    uint64_t maxId = storage.getMaxId();
+
+    int replayedCount = 0;
+
+    for (uint64_t id = startOffset + 1; id <= maxId; id++) {
+        std::string body = storage.readMessage(id);
+
+        if (body.empty()) continue;
+
+        std::string msgTopic = storage.getMessageTopic(id);
+
+        if (msgTopic.empty()) continue;
+
+        bool subscribed = false;
+        for (auto& sub : allSubs) {
+            if (sub.first == msgTopic) {
+                for (auto& c : sub.second) {
+                    if (c == consumerName) {
+                        subscribed = true;
+                        break;
+                    }
+                }
+            }
+            if (subscribed) break;
+        }
+
+        if (!subscribed) continue;
+
+        std::string out = "MSG " + std::to_string(id) + " " + msgTopic + " " + body + "\n";
+        write(client_fd, out.c_str(), out.size());
+        replayedCount++;
+
+        {
+            std::lock_guard<std::mutex> lock(ack_mtx);
+            if (pendingAck.find(id) != pendingAck.end()) {
+                pendingAck[id].waitingConsumers.insert(consumerName);
+            }
+        }
+    }
+
+    if (replayedCount > 0) {
+        std::cout << "Replayed " << replayedCount << " messages to " << consumerName << std::endl;
+        sendResponse(client_fd, "SYS replay done " + std::to_string(replayedCount) + " messages");
+    }
+}
+
 void Server::deliverMessage(const Message& msg) {
     auto consumers = subscriptionManager.get(msg.topic);
 
@@ -291,7 +347,7 @@ void Server::consumerThread() {
         Message msg = queue.pop();
         if (!running) break;
 
-        uint64_t id = storage.store(msg.body);
+        uint64_t id = storage.store(msg.topic, msg.body);
         msg.id = id;
 
         deliverMessage(msg);

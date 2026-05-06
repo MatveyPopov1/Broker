@@ -52,6 +52,7 @@ private:
     std::string processCommand(ClientState& state, const std::string& command);
     void sendResponse(int client_fd, const std::string& response);
     void deliverMessage(const Message& msg);
+    void replayHistory(const std::string& consumerName, int client_fd);
 
 public:
     void start(int port);
