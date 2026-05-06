@@ -13,9 +13,53 @@ Server* globalServer = nullptr;
 
 void signalHandler(int signum) {
     if (globalServer) {
-        std::cout << "\nReceived signal " << signum << std::endl;
+        std::cout << "\nПолучен сигнал " << signum << std::endl;
         globalServer->stop();
     }
+}
+
+std::string Server::getWelcomeMessage() {
+    return std::string(
+        "=============================================\n"
+        "  ДОБРО ПОЖАЛОВАТЬ В БРОКЕР СООБЩЕНИЙ\n"
+        "=============================================\n"
+        "\n"
+        "Доступные команды:\n"
+        "\n"
+        "  REGISTER <логин> <пароль> - Регистрация нового пользователя\n"
+        "  LOGIN <логин> <пароль>    - Авторизация пользователя\n"
+        "  HELP                      - Показать эту справку\n"
+        "  PING                      - Проверка соединения\n"
+        "  DISCONNECT                - Отключиться от сервера\n"
+        "\n"
+        "=============================================\n"
+    );
+}
+
+std::string Server::getHelpMessage(bool authenticated) {
+    if (!authenticated) {
+        return getWelcomeMessage();
+    }
+
+    return std::string(
+        "=============================================\n"
+        "  СПИСОК КОМАНД\n"
+        "=============================================\n"
+        "\n"
+        "  SUB <топик> <потребитель>  - Подписка на топик\n"
+        "  UNSUB <топик> <потребитель>- Отписка от топика\n"
+        "  PUB <топик> <тело> <приор> - Публикация сообщения\n"
+        "  ACK <id> <потребитель>     - Подтверждение обработки\n"
+        "  LIST_TOPICS                - Список всех топиков\n"
+        "  LIST_ACTIVE_TOPICS         - Список активных топиков\n"
+        "  LIST_SUBS <потребитель>    - Список подписок пользователя\n"
+        "  USERS                      - Список пользователей\n"
+        "  HELP                       - Показать эту справку\n"
+        "  DISCONNECT                 - Отключиться от сервера\n"
+        "  PING                       - Проверка соединения\n"
+        "\n"
+        "=============================================\n"
+    );
 }
 
 void Server::start(int port) {
@@ -40,14 +84,15 @@ void Server::start(int port) {
 
     offsetManager.load();
     subscriptionManager.load();
+    userManager.load();
 
     std::thread(&Server::consumerThread, this).detach();
     std::thread(&Server::retryThread, this).detach();
     std::thread(&Server::compactThread, this).detach();
     std::thread(&Server::consoleThread, this).detach();
 
-    std::cout << "Server started on port " << port << std::endl;
-    std::cout << "Type 'stop' to shutdown server" << std::endl;
+    std::cout << "Сервер запущен на порту " << port << std::endl;
+    std::cout << "Введите 'stop' для остановки сервера" << std::endl;
 
     acceptClients();
 }
@@ -58,7 +103,7 @@ void Server::consoleThread() {
         std::getline(std::cin, input);
 
         if (input == "stop") {
-            std::cout << "Shutdown command received from console" << std::endl;
+            std::cout << "Получена команда остановки из консоли" << std::endl;
             stop();
             break;
         }
@@ -76,7 +121,7 @@ void Server::disconnectClient(ClientState& state) {
 
         offsetManager.save();
 
-        std::cout << "Consumer disconnected: " << name << std::endl;
+        std::cout << "Потребитель отключился: " << name << std::endl;
     }
 
     shutdown(state.fd, SHUT_RDWR);
@@ -84,7 +129,7 @@ void Server::disconnectClient(ClientState& state) {
 }
 
 void Server::stop() {
-    std::cout << "\nShutting down server..." << std::endl;
+    std::cout << "\nЗавершение работы сервера..." << std::endl;
     running = false;
 
     {
@@ -101,7 +146,7 @@ void Server::stop() {
     }
 
     storage.compact();
-    std::cout << "Final compaction completed" << std::endl;
+    std::cout << "Финальное компактирование завершено" << std::endl;
 
     close(server_fd);
     exit(0);
@@ -125,10 +170,11 @@ void Server::handleClient(int client_fd) {
     ClientState state;
     state.fd = client_fd;
     state.buffer = "";
+    state.consumerName = "";
 
     char temp[1024];
 
-    sendResponse(client_fd, "SYS connected to server");
+    sendResponse(client_fd, getWelcomeMessage());
 
     while (running) {
         int bytes = read(client_fd, temp, sizeof(temp) - 1);
@@ -150,10 +196,16 @@ void Server::handleClient(int client_fd) {
             }
 
             if (!command.empty()) {
-                std::string response = processCommand(state, command);
+                std::string response;
+
+                if (state.consumerName.empty()) {
+                    response = processAuthCommand(state, command);
+                } else {
+                    response = processCommand(state, command);
+                }
 
                 if (response == "__DISCONNECT__") {
-                    sendResponse(client_fd, "OK goodbye");
+                    sendResponse(client_fd, "OK до свидания");
                     disconnectClient(state);
                     return;
                 }
@@ -168,6 +220,77 @@ void Server::handleClient(int client_fd) {
     close(client_fd);
 }
 
+std::string Server::processAuthCommand(ClientState& state, const std::string& command) {
+    std::istringstream iss(command);
+    std::string cmd;
+    iss >> cmd;
+
+    if (cmd == "PING") {
+        return "PONG";
+    }
+
+    if (cmd == "HELP") {
+        return getHelpMessage(false);
+    }
+
+    if (cmd == "DISCONNECT") {
+        return "__DISCONNECT__";
+    }
+
+    if (cmd == "REGISTER") {
+        std::string username, password;
+        iss >> username >> password;
+
+        if (username.empty() || password.empty()) {
+            return "ОШИБКА использование: REGISTER <логин> <пароль>";
+        }
+
+        if (userManager.userExists(username)) {
+            return "ОШИБКА пользователь уже существует";
+        }
+
+        if (userManager.registerUser(username, password)) {
+            std::cout << "Пользователь зарегистрирован: " << username << std::endl;
+            return "OK регистрация успешна, выполните LOGIN";
+        } else {
+            return "ОШИБКА не удалось зарегистрировать";
+        }
+    }
+
+    if (cmd == "LOGIN") {
+        std::string username, password;
+        iss >> username >> password;
+
+        if (username.empty() || password.empty()) {
+            return "ОШИБКА использование: LOGIN <логин> <пароль>";
+        }
+
+        if (!userManager.userExists(username)) {
+            return "ОШИБКА пользователь не найден";
+        }
+
+        if (userManager.authenticate(username, password)) {
+            state.consumerName = username;
+
+            std::lock_guard<std::mutex> lock(conn_mtx);
+            activeConsumers[username] = state.fd;
+
+            std::cout << "Пользователь вошел: " << username << std::endl;
+
+            std::string response = "OK вход выполнен\n" + getHelpMessage(true);
+            sendResponse(state.fd, response);
+
+            replayHistory(username, state.fd);
+
+            return "";
+        } else {
+            return "ОШИБКА неверный пароль";
+        }
+    }
+
+    return "ОШИБКА неизвестная команда";
+}
+
 std::string Server::processCommand(ClientState& state, const std::string& command) {
     std::istringstream iss(command);
     std::string cmd;
@@ -177,32 +300,12 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         return "PONG";
     }
 
+    if (cmd == "HELP") {
+        return getHelpMessage(true);
+    }
+
     if (cmd == "DISCONNECT") {
         return "__DISCONNECT__";
-    }
-
-    if (cmd == "CONNECT") {
-        std::string consumerName;
-        iss >> consumerName;
-
-        if (consumerName.empty()) {
-            return "ERROR usage: CONNECT <consumer_name>";
-        }
-
-        state.consumerName = consumerName;
-
-        std::lock_guard<std::mutex> lock(conn_mtx);
-        activeConsumers[consumerName] = state.fd;
-
-        std::cout << "Consumer connected: " << consumerName << std::endl;
-
-        replayHistory(consumerName, state.fd);
-
-        return "OK connected as " + consumerName;
-    }
-
-    if (state.consumerName.empty()) {
-        return "ERROR you must CONNECT first";
     }
 
     if (cmd == "SUB") {
@@ -210,16 +313,16 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         iss >> topic >> consumer;
 
         if (topic.empty() || consumer.empty()) {
-            return "ERROR usage: SUB <topic> <consumer>";
+            return "ОШИБКА использование: SUB <топик> <потребитель>";
         }
 
         bool added = subscriptionManager.add(topic, consumer);
 
         if (added) {
-            std::cout << consumer << " subscribed to " << topic << std::endl;
-            return "OK subscribed to " + topic;
+            std::cout << consumer << " подписался на " << topic << std::endl;
+            return "OK подписан на " + topic;
         } else {
-            return "ERROR already subscribed to " + topic;
+            return "ОШИБКА уже подписан на " + topic;
         }
     }
 
@@ -228,16 +331,16 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         iss >> topic >> consumer;
 
         if (topic.empty() || consumer.empty()) {
-            return "ERROR usage: UNSUB <topic> <consumer>";
+            return "ОШИБКА использование: UNSUB <топик> <потребитель>";
         }
 
         bool removed = subscriptionManager.remove(topic, consumer);
 
         if (removed) {
-            std::cout << consumer << " unsubscribed from " << topic << std::endl;
-            return "OK unsubscribed from " + topic;
+            std::cout << consumer << " отписался от " << topic << std::endl;
+            return "OK отписан от " + topic;
         } else {
-            return "ERROR not subscribed to " + topic;
+            return "ОШИБКА не подписан на " + topic;
         }
     }
 
@@ -245,10 +348,10 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         auto topics = subscriptionManager.getTopics();
 
         if (topics.empty()) {
-            return "OK no topics available";
+            return "OK топиков нет";
         }
 
-        std::string response = "OK topics:";
+        std::string response = "OK топики:";
         for (auto& t : topics) {
             response += " " + t;
         }
@@ -259,10 +362,10 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         auto topics = subscriptionManager.getActiveTopics();
 
         if (topics.empty()) {
-            return "OK no active topics";
+            return "OK нет активных топиков";
         }
 
-        std::string response = "OK active topics:";
+        std::string response = "OK активные топики:";
         for (auto& t : topics) {
             response += " " + t;
         }
@@ -274,18 +377,36 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         iss >> consumer;
 
         if (consumer.empty()) {
-            return "ERROR usage: LIST_SUBS <consumer>";
+            return "ОШИБКА использование: LIST_SUBS <потребитель>";
         }
 
         auto subs = subscriptionManager.getSubscriptions(consumer);
 
         if (subs.empty()) {
-            return "OK no active subscriptions for " + consumer;
+            return "OK нет подписок у " + consumer;
         }
 
-        std::string response = "OK subscriptions for " + consumer + ":";
+        std::string response = "OK подписки " + consumer + ":";
         for (auto& s : subs) {
             response += " " + s;
+        }
+        return response;
+    }
+
+    if (cmd == "USERS") {
+        auto allUsers = userManager.getAllUsers();
+        std::string response = "OK пользователи:";
+
+        for (auto& u : allUsers) {
+            response += " " + u;
+            {
+                std::lock_guard<std::mutex> lock(conn_mtx);
+                if (activeConsumers.find(u) != activeConsumers.end()) {
+                    response += "(онлайн)";
+                } else {
+                    response += "(офлайн)";
+                }
+            }
         }
         return response;
     }
@@ -295,7 +416,7 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         iss >> topic;
 
         if (topic.empty()) {
-            return "ERROR usage: PUB <topic> <message> <priority>";
+            return "ОШИБКА использование: PUB <топик> <сообщение> <приоритет>";
         }
 
         std::string rest;
@@ -307,7 +428,7 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
 
         size_t lastSpace = rest.find_last_of(' ');
         if (lastSpace == std::string::npos) {
-            return "ERROR usage: PUB <topic> <message> <priority>";
+            return "ОШИБКА использование: PUB <топик> <сообщение> <приоритет>";
         }
 
         std::string body = rest.substr(0, lastSpace);
@@ -317,7 +438,7 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         try {
             priority = std::stoi(priorityStr);
         } catch (...) {
-            return "ERROR priority must be integer";
+            return "ОШИБКА приоритет должен быть числом";
         }
 
         subscriptionManager.ensureTopic(topic);
@@ -330,8 +451,8 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         queue.push(msg);
         metrics.produced++;
 
-        std::cout << "Message published to " << topic << " priority " << priority << std::endl;
-        return "OK message published to " + topic;
+        std::cout << "Сообщение опубликовано в " << topic << " приоритет " << priority << std::endl;
+        return "OK сообщение опубликовано в " + topic;
     }
 
     if (cmd == "ACK") {
@@ -341,7 +462,7 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         iss >> id >> consumer;
 
         if (consumer.empty()) {
-            return "ERROR usage: ACK <id> <consumer>";
+            return "ОШИБКА использование: ACK <id> <потребитель>";
         }
 
         bool allAcked = false;
@@ -353,8 +474,8 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
             if (it != pendingAck.end()) {
                 it->second.waitingConsumers.erase(consumer);
 
-                std::cout << "ACK " << id << " from " << consumer
-                          << " (remaining: " << it->second.waitingConsumers.size() << ")" << std::endl;
+                std::cout << "ACK " << id << " от " << consumer
+                          << " (осталось: " << it->second.waitingConsumers.size() << ")" << std::endl;
 
                 if (it->second.waitingConsumers.empty()) {
                     allAcked = true;
@@ -368,16 +489,16 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
             std::lock_guard<std::mutex> lock(ack_mtx);
             pendingAck.erase(id);
 
-            std::cout << "Message " << id << " fully acknowledged, marked deleted" << std::endl;
+            std::cout << "Сообщение " << id << " полностью подтверждено, помечено удаленным" << std::endl;
         }
 
         metrics.consumed++;
         offsetManager.set(consumer, id);
 
-        return "OK ack " + std::to_string(id);
+        return "OK подтверждено " + std::to_string(id);
     }
 
-    return "ERROR unknown command";
+    return "ОШИБКА неизвестная команда";
 }
 
 void Server::replayHistory(const std::string& consumerName, int client_fd) {
@@ -385,7 +506,7 @@ void Server::replayHistory(const std::string& consumerName, int client_fd) {
 
     uint64_t startOffset = offsetManager.get(consumerName);
 
-    std::cout << "Replaying history for " << consumerName << " from offset " << startOffset << std::endl;
+    std::cout << "Восстановление истории для " << consumerName << " начиная с offset " << startOffset << std::endl;
 
     uint64_t maxId = storage.getMaxId();
 
@@ -428,8 +549,8 @@ void Server::replayHistory(const std::string& consumerName, int client_fd) {
     }
 
     if (replayedCount > 0) {
-        std::cout << "Replayed " << replayedCount << " messages to " << consumerName << std::endl;
-        sendResponse(client_fd, "SYS replay done " + std::to_string(replayedCount) + " messages");
+        std::cout << "Восстановлено " << replayedCount << " сообщений для " << consumerName << std::endl;
+        sendResponse(client_fd, "SYS восстановлено " + std::to_string(replayedCount) + " сообщений");
     }
 }
 
@@ -462,9 +583,9 @@ void Server::deliverMessage(const Message& msg) {
             std::string out = "MSG " + std::to_string(msg.id) + " " + msg.topic + " " + msg.body + "\n";
             write(client, out.c_str(), out.size());
 
-            std::cout << "Delivered message " << msg.id << " to " << consumer << std::endl;
+            std::cout << "Доставлено сообщение " << msg.id << " пользователю " << consumer << std::endl;
         } else {
-            std::cout << "Consumer " << consumer << " offline, message " << msg.id << " pending" << std::endl;
+            std::cout << "Потребитель " << consumer << " офлайн, сообщение " << msg.id << " ожидает" << std::endl;
         }
     }
 }
@@ -518,8 +639,8 @@ void Server::retryThread() {
                     std::string out = "MSG " + std::to_string(id) + " " + pm.topic + " " + msgBody + "\n";
                     write(client, out.c_str(), out.size());
 
-                    std::cout << "Retry message " << id << " to " << consumer
-                              << " (attempt " << pm.retryCount + 1 << ")" << std::endl;
+                    std::cout << "Повтор сообщения " << id << " для " << consumer
+                              << " (попытка " << pm.retryCount + 1 << ")" << std::endl;
                 }
             }
 
@@ -527,7 +648,7 @@ void Server::retryThread() {
             pm.retryCount++;
 
             if (pm.retryCount > 10) {
-                std::cout << "Message " << id << " exceeded max retries, dropping" << std::endl;
+                std::cout << "Сообщение " << id << " превысило лимит попыток, удаляется" << std::endl;
                 storage.remove(id);
                 pendingAck.erase(id);
             }
@@ -540,8 +661,8 @@ void Server::compactThread() {
         std::this_thread::sleep_for(std::chrono::minutes(10));
         if (!running) break;
 
-        std::cout << "Starting periodic compaction..." << std::endl;
+        std::cout << "Запуск периодического компактирования..." << std::endl;
         storage.compact();
-        std::cout << "Periodic compaction completed" << std::endl;
+        std::cout << "Периодическое компактирование завершено" << std::endl;
     }
 }

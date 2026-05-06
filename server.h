@@ -7,6 +7,7 @@
 #include "../offset/offset.h"
 #include "../subscriptions/subscriptions.h"
 #include "../message/message.h"
+#include "../user/user.h"
 
 #include <map>
 #include <mutex>
@@ -29,6 +30,7 @@ private:
 
     OffsetManager offsetManager;
     SubscriptionManager subscriptionManager;
+    UserManager userManager;
 
     std::map<std::string, int> activeConsumers;
     std::mutex conn_mtx;
@@ -49,7 +51,10 @@ private:
         std::string buffer;
     };
 
+    std::string getWelcomeMessage();
+    std::string getHelpMessage(bool authenticated);
     std::string processCommand(ClientState& state, const std::string& command);
+    std::string processAuthCommand(ClientState& state, const std::string& command);
     void sendResponse(int client_fd, const std::string& response);
     void deliverMessage(const Message& msg);
     void replayHistory(const std::string& consumerName, int client_fd);
