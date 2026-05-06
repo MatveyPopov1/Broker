@@ -1,0 +1,5 @@
+<map id="UserManager::getAllUsers" name="UserManager::getAllUsers">
+<area shape="rect" id="Node000001" title="Возвращает список всех зарегистрированных пользователей." alt="" coords="148,5,340,31"/>
+<area shape="rect" id="Node000002" href="$test__user_8cpp.html#ad60387c81724dca736abc04c75125a18" title=" " alt="" coords="5,5,100,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,21,100,21,100,15,134,15"/>
+</map>

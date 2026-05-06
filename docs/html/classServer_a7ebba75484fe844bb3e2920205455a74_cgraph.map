@@ -1,0 +1,60 @@
+<map id="Server::start" name="Server::start">
+<area shape="rect" id="Node000001" title="Запускает сервер на указанном порту." alt="" coords="5,307,108,332"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a3662b24bb10a2226f113bb32b13859fe" title="Цикл приема входящих TCP&#45;подключений." alt="" coords="167,31,327,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,306,68,266,86,210,114,148,133,118,154,91,174,73,197,60,199,64,177,78,158,95,137,121,119,150,91,212,73,267,63,307"/>
+<area shape="rect" id="Node000004" href="$classServer.html#a7a27aaa2869a2be86e3d67aba43fc4e2" title="Поток периодического компактирования хранилища." alt="" coords="385,156,559,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="61,305,94,248,121,217,155,192,208,170,264,158,320,154,372,154,372,160,320,159,265,164,209,175,157,196,125,221,99,252,66,308"/>
+<area shape="rect" id="Node000008" href="$classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb" title=" " alt="" coords="633,256,731,281"/>
+<area shape="poly" id="edge18_Node000001_Node000008" title=" " alt="" coords="108,313,619,271,619,276,109,318"/>
+<area shape="rect" id="Node000010" href="$classServer.html#a13a1648f4fe17aad0e3bdca01f4e6270" title="Поток консольного управления сервером." alt="" coords="163,256,330,281"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="105,304,184,282,186,288,106,309"/>
+<area shape="rect" id="Node000012" href="$classServer.html#a62d04fa0fa98b2c39f2748ff28a68ef7" title="Поток обработки очереди сообщений." alt="" coords="156,105,337,131"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="60,305,71,274,91,232,118,187,154,148,177,134,179,138,158,152,123,190,95,234,76,276,65,307"/>
+<area shape="rect" id="Node000015" href="$classLogger.html#ad09ebceb00557a103de141e3ce19cbf9" title=" " alt="" coords="199,407,294,432"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="73,330,110,361,157,392,187,403,185,408,155,396,106,365,70,334"/>
+<area shape="rect" id="Node000016" href="$classOffsetManager.html#a92ed3753c43dc3e1b18b4dc5fa4c5ca3" title=" " alt="" coords="169,456,324,481"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="67,331,101,384,127,415,158,441,170,448,168,453,154,446,123,419,96,388,62,333"/>
+<area shape="rect" id="Node000017" href="$classSubscriptionManager.html#a70647c47e0fbe2d3cc2102fab985b866" title="Загружает подписки и топики из файлов при старте сервера." alt="" coords="167,506,326,546"/>
+<area shape="poly" id="edge21_Node000001_Node000017" title=" " alt="" coords="64,331,76,364,95,407,122,452,158,492,164,497,161,501,154,496,118,456,90,409,71,366,59,333"/>
+<area shape="rect" id="Node000018" href="$classUserManager.html#a4605160414a0936b4426d0c1c673c1f8" title="Загружает пользователей из файла users.dat при старте сервера." alt="" coords="174,571,319,596"/>
+<area shape="poly" id="edge22_Node000001_Node000018" title=" " alt="" coords="62,332,69,375,86,436,114,500,134,530,158,556,165,562,162,566,154,560,130,533,109,503,81,437,64,376,57,333"/>
+<area shape="rect" id="Node000019" href="$classServer.html#ace7feff63a51f611e51531490dee7c09" title="Поток повторной отправки неподтвержденных сообщений." alt="" coords="173,357,321,383"/>
+<area shape="poly" id="edge23_Node000001_Node000019" title=" " alt="" coords="106,330,186,351,184,356,105,335"/>
+<area shape="rect" id="Node000025" href="$server_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61" title=" " alt="" coords="191,207,303,232"/>
+<area shape="poly" id="edge32_Node000001_Node000025" title=" " alt="" coords="69,305,106,273,155,241,176,232,178,237,157,246,109,277,73,309"/>
+<area shape="rect" id="Node000003" href="$classServer.html#a6767634fe66541db42ff7a009743eba2" title="Обработчик команд одного клиента." alt="" coords="395,5,549,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,32,381,26,381,31,327,37"/>
+<area shape="rect" id="Node000005" href="$classStorage.html#a8e02343a00df6c07d45948aeae6df1af" title="Выполняет компактирование журнала." alt="" coords="614,156,750,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="559,166,600,166,600,171,559,171"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="528,179,560,190,611,217,654,246,651,250,608,222,558,195,527,184"/>
+<area shape="rect" id="Node000006" href="$classIndex.html#ae93b1062318d9248e6968eb5df351de0" title=" " alt="" coords="813,95,903,120"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="718,153,807,122,809,127,720,158"/>
+<area shape="rect" id="Node000007" href="$classIndex.html#abe0d1a7ffebaf3156078e44e540d165a" title=" " alt="" coords="806,156,910,181"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="750,166,793,166,793,171,750,171"/>
+<area shape="rect" id="Node000009" href="$classLogger.html#a3d3f0801eeaf39b33a906ea8569c19b2" title=" " alt="" coords="811,256,905,281"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="732,266,797,266,797,271,732,271"/>
+<area shape="poly" id="edge10_Node000010_Node000008" title=" " alt="" coords="330,266,619,266,619,271,330,271"/>
+<area shape="rect" id="Node000011" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="422,205,522,231"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="304,253,408,230,409,235,305,258"/>
+<area shape="poly" id="edge12_Node000011_Node000005" title=" " alt="" coords="522,204,613,182,614,187,523,209"/>
+<area shape="poly" id="edge13_Node000011_Node000008" title=" " alt="" coords="523,227,620,251,619,256,522,233"/>
+<area shape="rect" id="Node000013" href="$classMessageQueue.html#a28ef0b13d8402a1d857192708aeb21e5" title=" " alt="" coords="395,107,549,132"/>
+<area shape="poly" id="edge15_Node000012_Node000013" title=" " alt="" coords="338,116,381,116,381,121,338,121"/>
+<area shape="rect" id="Node000014" href="$classStorage.html#a55e0c2b5d656030c99ee05a6b22d9d47" title="Сохраняет сообщение в журнал." alt="" coords="625,69,739,95"/>
+<area shape="poly" id="edge16_Node000012_Node000014" title=" " alt="" coords="310,103,385,91,505,83,611,80,612,85,505,88,386,97,311,108"/>
+<area shape="poly" id="edge17_Node000014_Node000006" title=" " alt="" coords="740,88,799,96,799,102,739,93"/>
+<area shape="poly" id="edge24_Node000019_Node000008" title=" " alt="" coords="321,368,434,361,497,351,558,335,608,313,651,287,654,292,611,318,560,341,498,356,435,366,321,374"/>
+<area shape="rect" id="Node000020" href="$classStorage.html#a5ab414966dcfce6af94002ee03a3ee02" title="Читает тело сообщения по идентификатору." alt="" coords="389,408,555,433"/>
+<area shape="poly" id="edge25_Node000019_Node000020" title=" " alt="" coords="305,380,402,402,401,408,304,385"/>
+<area shape="rect" id="Node000023" href="$classStorage.html#a1dd31db0fd01325e449b45fb18a0e555" title="Помечает сообщение удаленным в индексе." alt="" coords="407,457,537,483"/>
+<area shape="poly" id="edge28_Node000019_Node000023" title=" " alt="" coords="314,380,339,392,354,405,364,418,372,430,387,442,401,450,399,455,384,447,368,434,359,421,350,408,336,396,312,385"/>
+<area shape="rect" id="Node000021" href="$classIndex.html#a65d36d7dddfbc98c7218252807f8e918" title=" " alt="" coords="805,457,911,483"/>
+<area shape="poly" id="edge26_Node000020_Node000021" title=" " alt="" coords="510,405,560,392,623,382,691,380,725,384,758,393,802,416,837,445,833,449,799,420,756,398,724,390,691,386,623,387,561,398,511,411"/>
+<area shape="rect" id="Node000022" href="$classIndex.html#abe764c4869b497fee61ed0e7f9893c29" title=" " alt="" coords="639,408,725,433"/>
+<area shape="poly" id="edge27_Node000020_Node000022" title=" " alt="" coords="556,418,625,418,625,423,556,423"/>
+<area shape="poly" id="edge29_Node000023_Node000021" title=" " alt="" coords="528,480,607,493,682,498,757,493,803,484,804,489,758,498,682,503,606,498,527,485"/>
+<area shape="rect" id="Node000024" href="$classIndex.html#af15bdb9e16ef71941c6acb0960cc89c6" title=" " alt="" coords="607,457,757,483"/>
+<area shape="poly" id="edge30_Node000023_Node000024" title=" " alt="" coords="538,467,593,467,593,473,538,473"/>
+<area shape="poly" id="edge31_Node000024_Node000021" title=" " alt="" coords="757,467,791,467,791,473,757,473"/>
+<area shape="poly" id="edge33_Node000025_Node000011" title=" " alt="" coords="303,216,408,216,408,221,303,222"/>
+</map>

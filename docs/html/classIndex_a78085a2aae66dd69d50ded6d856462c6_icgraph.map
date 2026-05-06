@@ -1,0 +1,7 @@
+<map id="Index::load" name="Index::load">
+<area shape="rect" id="Node000001" title=" " alt="" coords="184,31,279,56"/>
+<area shape="rect" id="Node000002" href="$classStorage.html#a80ef6af5e4c9fd4424ae16e808d05291" title="Открывает data.log, загружает индекс, восстанавливает currentId." alt="" coords="5,5,136,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,36,136,31,137,26,171,31"/>
+<area shape="rect" id="Node000003" href="$test__index_8cpp.html#a4cba1ed2feb987745730fc126dbdca42" title=" " alt="" coords="23,55,118,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="171,55,119,63,118,58,170,50"/>
+</map>

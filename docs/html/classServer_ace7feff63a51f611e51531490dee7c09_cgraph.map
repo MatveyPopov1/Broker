@@ -1,0 +1,19 @@
+<map id="Server::retryThread" name="Server::retryThread">
+<area shape="rect" id="Node000001" title="Поток повторной отправки неподтвержденных сообщений." alt="" coords="5,93,153,119"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb" title=" " alt="" coords="235,19,334,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,91,235,46,237,51,116,96"/>
+<area shape="rect" id="Node000004" href="$classStorage.html#a5ab414966dcfce6af94002ee03a3ee02" title="Читает тело сообщения по идентификатору." alt="" coords="201,93,368,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="154,103,187,103,187,109,154,109"/>
+<area shape="rect" id="Node000007" href="$classStorage.html#a1dd31db0fd01325e449b45fb18a0e555" title="Помечает сообщение удаленным в индексе." alt="" coords="219,157,350,183"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="122,116,231,151,229,156,120,121"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a3d3f0801eeaf39b33a906ea8569c19b2" title=" " alt="" coords="444,5,539,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,26,430,19,430,25,335,31"/>
+<area shape="rect" id="Node000005" href="$classIndex.html#a65d36d7dddfbc98c7218252807f8e918" title=" " alt="" coords="615,157,720,183"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="335,91,385,82,444,77,506,78,567,91,591,102,612,116,647,145,643,149,609,120,588,107,566,97,506,84,444,82,385,87,336,96"/>
+<area shape="rect" id="Node000006" href="$classIndex.html#abe764c4869b497fee61ed0e7f9893c29" title=" " alt="" coords="448,107,535,132"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="369,109,434,113,434,118,368,114"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="350,167,601,167,601,173,350,173"/>
+<area shape="rect" id="Node000008" href="$classIndex.html#af15bdb9e16ef71941c6acb0960cc89c6" title=" " alt="" coords="416,208,567,233"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="338,180,426,202,425,207,337,185"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="536,205,608,184,610,189,537,210"/>
+</map>

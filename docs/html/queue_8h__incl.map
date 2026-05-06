@@ -1,0 +1,15 @@
+<map id="queue/queue.h" name="queue/queue.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="214,5,333,31"/>
+<area shape="rect" id="Node000002" href="$message_8h.html" title=" " alt="" coords="5,79,173,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,33,133,76,131,71,243,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="198,79,261,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="268,32,246,68,241,66,264,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="285,79,349,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="283,30,305,66,301,68,278,32"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="374,79,517,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="302,28,406,71,404,76,300,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="17,152,76,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="85,106,63,142,58,139,80,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="100,152,167,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="99,103,121,139,117,142,94,106"/>
+</map>

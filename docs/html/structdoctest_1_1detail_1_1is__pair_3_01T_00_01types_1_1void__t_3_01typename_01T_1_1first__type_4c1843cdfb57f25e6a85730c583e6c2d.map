@@ -1,0 +1,5 @@
+<map id="doctest::detail::is_pair&lt; T, types::void_t&lt; typename T::first_type, typename T::second_type, decltype(declval&lt; T &gt;().first), decltype(declval&lt; T &gt;().second)&gt; &gt;" name="doctest::detail::is_pair&lt; T, types::void_t&lt; typename T::first_type, typename T::second_type, decltype(declval&lt; T &gt;().first), decltype(declval&lt; T &gt;().second)&gt; &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,215,207"/>
+<area shape="rect" id="Node000002" href="$structdoctest_1_1detail_1_1types_1_1true__type.html" title=" " alt="" coords="31,5,189,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,59,113,93,107,93,107,59"/>
+</map>

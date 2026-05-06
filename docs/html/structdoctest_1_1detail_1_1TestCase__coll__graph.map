@@ -1,0 +1,10 @@
+<map id="doctest::detail::TestCase" name="doctest::detail::TestCase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,260,187,285"/>
+<area shape="rect" id="Node000002" href="$structdoctest_1_1TestCaseData.html" title=" " alt="" coords="194,183,361,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,216,125,262,123,257,236,211"/>
+<area shape="rect" id="Node000003" href="$classdoctest_1_1String.html" title=" " alt="" coords="43,93,159,119"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="101,132,96,181,96,211,98,260,93,260,91,211,91,181,95,132"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,122,256,181,253,186,135,127"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="24,5,179,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="104,45,104,93,99,93,99,45"/>
+</map>

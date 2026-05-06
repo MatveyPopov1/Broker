@@ -1,0 +1,25 @@
+<map id="Logger::info" name="Logger::info">
+<area shape="rect" id="Node000001" title=" " alt="" coords="716,107,815,132"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a7a27aaa2869a2be86e3d67aba43fc4e2" title="Поток периодического компактирования хранилища." alt="" coords="299,107,472,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="702,122,472,122,472,117,702,117"/>
+<area shape="rect" id="Node000003" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,132,251,157"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="702,107,621,93,520,82,409,81,353,86,299,97,256,113,220,134,217,130,253,109,298,91,353,81,409,76,520,77,622,88,703,102"/>
+<area shape="rect" id="Node000006" href="$classServer.html#a13a1648f4fe17aad0e3bdca01f4e6270" title="Поток консольного управления сервером." alt="" coords="302,156,469,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="703,130,469,161,469,155,702,125"/>
+<area shape="rect" id="Node000007" href="$classServer.html#ace7feff63a51f611e51531490dee7c09" title="Поток повторной отправки неподтвержденных сообщений." alt="" coords="520,5,668,31"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="736,100,667,52,627,33,629,28,669,48,739,96"/>
+<area shape="rect" id="Node000008" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="544,208,644,233"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="739,143,669,191,629,210,627,206,667,186,736,138"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,136,251,140,251,135,285,130"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,132,80,157"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,147,80,147,80,142,134,142"/>
+<area shape="rect" id="Node000005" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,207,100,232"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="162,166,80,209,78,204,160,162"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="288,159,251,154,251,149,289,154"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="506,16,458,17,404,23,351,34,300,52,272,70,247,92,211,134,207,130,243,88,268,66,298,48,349,29,404,17,457,12,506,10"/>
+<area shape="poly" id="edge14_Node000008_Node000005" title=" " alt="" coords="531,237,472,246,368,250,265,246,100,229,101,224,265,241,368,245,472,241,530,232"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="530,208,436,184,438,179,531,202"/>
+<area shape="rect" id="Node000009" href="$server_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61" title=" " alt="" coords="329,205,441,231"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="530,223,442,221,442,216,530,217"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="319,204,298,196,222,160,224,155,300,192,321,199"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="MessageQueue::pop" name="MessageQueue::pop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="528,56,683,81"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a62d04fa0fa98b2c39f2748ff28a68ef7" title="Поток обработки очереди сообщений." alt="" coords="299,31,480,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="514,61,480,57,481,51,514,55"/>
+<area shape="rect" id="Node000006" href="$test__queue_8cpp.html#a2d5ea33e584269d2dbcf75b3c9055fb3" title=" " alt="" coords="342,80,437,105"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="515,81,437,90,436,85,514,76"/>
+<area shape="rect" id="Node000003" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,31,251,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="285,46,251,46,251,41,285,41"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,5,80,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,35,80,25,81,20,135,29"/>
+<area shape="rect" id="Node000005" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,55,100,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="135,57,101,62,100,57,134,51"/>
+</map>

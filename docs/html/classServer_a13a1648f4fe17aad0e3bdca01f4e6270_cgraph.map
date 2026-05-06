@@ -1,0 +1,16 @@
+<map id="Server::consoleThread" name="Server::consoleThread">
+<area shape="rect" id="Node000001" title="Поток консольного управления сервером." alt="" coords="5,29,172,55"/>
+<area shape="rect" id="Node000002" href="$classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb" title=" " alt="" coords="387,5,485,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,34,373,20,373,25,172,39"/>
+<area shape="rect" id="Node000004" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="220,55,320,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,51,207,56,206,61,172,56"/>
+<area shape="rect" id="Node000003" href="$classLogger.html#a3d3f0801eeaf39b33a906ea8569c19b2" title=" " alt="" coords="557,5,651,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="486,15,543,15,543,21,486,21"/>
+<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="313,52,378,32,380,37,314,57"/>
+<area shape="rect" id="Node000005" href="$classStorage.html#a8e02343a00df6c07d45948aeae6df1af" title="Выполняет компактирование журнала." alt="" coords="368,55,504,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="320,65,354,65,354,70,320,70"/>
+<area shape="rect" id="Node000006" href="$classIndex.html#ae93b1062318d9248e6968eb5df351de0" title=" " alt="" coords="559,55,649,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="504,65,545,65,545,70,504,70"/>
+<area shape="rect" id="Node000007" href="$classIndex.html#abe0d1a7ffebaf3156078e44e540d165a" title=" " alt="" coords="552,104,656,129"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="481,77,547,97,546,102,479,83"/>
+</map>

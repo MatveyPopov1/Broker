@@ -1,0 +1,33 @@
+<map id="Index::add" name="Index::add">
+<area shape="rect" id="Node000001" title=" " alt="" coords="933,205,1024,231"/>
+<area shape="rect" id="Node000002" href="$classStorage.html#a8e02343a00df6c07d45948aeae6df1af" title="Выполняет компактирование журнала." alt="" coords="749,104,885,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="944,200,837,132,840,127,947,196"/>
+<area shape="rect" id="Node000010" href="$classStorage.html#a55e0c2b5d656030c99ee05a6b22d9d47" title="Сохраняет сообщение в журнал." alt="" coords="761,180,874,205"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="920,211,874,204,875,199,920,206"/>
+<area shape="rect" id="Node000013" href="$test__index_8cpp.html#ac8acf058bbf81b32148a2c9885f6c448" title=" " alt="" coords="770,229,865,255"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="920,229,865,238,864,232,919,224"/>
+<area shape="rect" id="Node000014" href="$test__index_8cpp.html#a4cba1ed2feb987745730fc126dbdca42" title=" " alt="" coords="770,279,865,304"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="945,240,886,270,858,281,856,276,884,265,943,235"/>
+<area shape="rect" id="Node000003" href="$classServer.html#a7a27aaa2869a2be86e3d67aba43fc4e2" title="Поток периодического компактирования хранилища." alt="" coords="299,5,472,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="747,104,441,33,443,28,748,98"/>
+<area shape="rect" id="Node000007" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="561,104,661,129"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="736,119,661,119,661,114,736,114"/>
+<area shape="rect" id="Node000004" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,104,251,129"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="316,38,300,44,252,75,216,106,212,102,249,71,297,40,313,33"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,104,80,129"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,119,80,119,80,114,134,114"/>
+<area shape="rect" id="Node000006" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,153,100,179"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="149,136,92,156,91,151,147,131"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="548,132,472,143,265,161,101,168,100,162,265,155,472,138,547,126"/>
+<area shape="rect" id="Node000008" href="$classServer.html#a13a1648f4fe17aad0e3bdca01f4e6270" title="Поток консольного управления сервером." alt="" coords="302,104,469,129"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="547,119,469,119,469,114,547,114"/>
+<area shape="rect" id="Node000009" href="$server_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61" title=" " alt="" coords="329,55,441,80"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="547,106,441,82,442,77,548,100"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="289,119,251,119,251,114,289,114"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="324,86,249,106,248,101,323,81"/>
+<area shape="rect" id="Node000011" href="$classServer.html#a62d04fa0fa98b2c39f2748ff28a68ef7" title="Поток обработки очереди сообщений." alt="" coords="520,180,701,205"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="747,195,701,195,701,190,747,190"/>
+<area shape="rect" id="Node000012" href="$test__storage_8cpp.html#a80f8f3e18bb96d2f5ceee3028bc47775" title=" " alt="" coords="563,229,658,255"/>
+<area shape="poly" id="edge15_Node000010_Node000012" title=" " alt="" coords="751,211,659,233,657,228,750,206"/>
+<area shape="poly" id="edge14_Node000011_Node000004" title=" " alt="" coords="509,180,298,143,249,132,250,127,299,138,510,175"/>
+</map>

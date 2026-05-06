@@ -1,0 +1,13 @@
+<map id="Server::compactThread" name="Server::compactThread">
+<area shape="rect" id="Node000001" title="Поток периодического компактирования хранилища." alt="" coords="5,80,179,105"/>
+<area shape="rect" id="Node000002" href="$classStorage.html#a8e02343a00df6c07d45948aeae6df1af" title="Выполняет компактирование журнала." alt="" coords="227,55,363,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,79,213,75,213,80,179,84"/>
+<area shape="rect" id="Node000005" href="$classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb" title=" " alt="" coords="245,104,344,129"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="179,100,232,107,231,112,178,106"/>
+<area shape="rect" id="Node000003" href="$classIndex.html#ae93b1062318d9248e6968eb5df351de0" title=" " alt="" coords="417,5,508,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,52,404,32,406,37,339,57"/>
+<area shape="rect" id="Node000004" href="$classIndex.html#abe0d1a7ffebaf3156078e44e540d165a" title=" " alt="" coords="411,55,515,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="363,65,397,65,397,70,363,70"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#a3d3f0801eeaf39b33a906ea8569c19b2" title=" " alt="" coords="415,104,510,129"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="344,114,402,114,402,119,344,119"/>
+</map>

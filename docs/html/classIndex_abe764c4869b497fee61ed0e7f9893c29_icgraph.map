@@ -1,0 +1,22 @@
+<map id="Index::get" name="Index::get">
+<area shape="rect" id="Node000001" title=" " alt="" coords="735,80,821,105"/>
+<area shape="rect" id="Node000002" href="$classStorage.html#a1e804ec6d3d16a3c260546cdc8d62e4c" title="Возвращает топик сообщения по идентификатору." alt="" coords="495,5,687,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="745,75,686,44,652,33,653,28,688,40,747,70"/>
+<area shape="rect" id="Node000004" href="$classStorage.html#a5ab414966dcfce6af94002ee03a3ee02" title="Читает тело сообщения по идентификатору." alt="" coords="507,55,674,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="720,88,674,81,675,76,721,82"/>
+<area shape="rect" id="Node000009" href="$test__index_8cpp.html#ac8acf058bbf81b32148a2c9885f6c448" title=" " alt="" coords="543,104,638,129"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="721,103,638,113,638,108,721,97"/>
+<area shape="rect" id="Node000010" href="$test__index_8cpp.html#a4cba1ed2feb987745730fc126dbdca42" title=" " alt="" coords="543,153,638,179"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="747,115,688,144,639,159,638,154,686,140,744,110"/>
+<area shape="rect" id="Node000003" href="$test__storage_8cpp.html#a80f8f3e18bb96d2f5ceee3028bc47775" title=" " alt="" coords="325,5,420,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="480,21,420,21,420,15,480,15"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="520,54,420,31,421,26,521,49"/>
+<area shape="rect" id="Node000005" href="$classServer.html#ace7feff63a51f611e51531490dee7c09" title="Поток повторной отправки неподтвержденных сообщений." alt="" coords="299,55,447,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="494,70,447,70,447,65,494,65"/>
+<area shape="rect" id="Node000006" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,55,251,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="285,70,251,70,251,65,285,65"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,29,80,55"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="134,59,80,49,81,44,135,53"/>
+<area shape="rect" id="Node000008" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,79,100,104"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="135,81,101,86,100,81,134,75"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="SubscriptionManager::load" name="SubscriptionManager::load">
+<area shape="rect" id="Node000001" title="Загружает подписки и топики из файлов при старте сервера." alt="" coords="299,47,457,87"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,29,251,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,57,250,52,251,47,286,52"/>
+<area shape="rect" id="Node000005" href="$test__subscriptions_8cpp.html#a5ec9e654c792c6a1d1157b7c9b8a3f0a" title=" " alt="" coords="152,79,247,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="286,82,247,88,246,82,285,77"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,5,80,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,34,80,25,81,20,134,29"/>
+<area shape="rect" id="Node000004" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,55,100,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="135,56,101,62,100,57,134,51"/>
+</map>
