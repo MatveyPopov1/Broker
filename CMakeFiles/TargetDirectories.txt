@@ -1,3 +1,0 @@
-/home/schadoww/CourseWork/nbroker_1.2/CMakeFiles/broker.dir
-/home/schadoww/CourseWork/nbroker_1.2/CMakeFiles/edit_cache.dir
-/home/schadoww/CourseWork/nbroker_1.2/CMakeFiles/rebuild_cache.dir
