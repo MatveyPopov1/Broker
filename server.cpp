@@ -13,6 +13,7 @@ Server* globalServer = nullptr;
 
 void signalHandler(int signum) {
     if (globalServer) {
+        std::cout << "\nReceived signal " << signum << std::endl;
         globalServer->stop();
     }
 }
@@ -43,15 +44,61 @@ void Server::start(int port) {
     std::thread(&Server::consumerThread, this).detach();
     std::thread(&Server::retryThread, this).detach();
     std::thread(&Server::compactThread, this).detach();
+    std::thread(&Server::consoleThread, this).detach();
 
     std::cout << "Server started on port " << port << std::endl;
+    std::cout << "Type 'stop' to shutdown server" << std::endl;
 
     acceptClients();
+}
+
+void Server::consoleThread() {
+    std::string input;
+    while (running) {
+        std::getline(std::cin, input);
+
+        if (input == "stop") {
+            std::cout << "Shutdown command received from console" << std::endl;
+            stop();
+            break;
+        }
+    }
+}
+
+void Server::disconnectClient(ClientState& state) {
+    std::string name = state.consumerName;
+
+    if (!name.empty()) {
+        {
+            std::lock_guard<std::mutex> lock(conn_mtx);
+            activeConsumers.erase(name);
+        }
+
+        offsetManager.save();
+
+        std::cout << "Consumer disconnected: " << name << std::endl;
+    }
+
+    shutdown(state.fd, SHUT_RDWR);
+    close(state.fd);
 }
 
 void Server::stop() {
     std::cout << "\nShutting down server..." << std::endl;
     running = false;
+
+    {
+        std::lock_guard<std::mutex> lock(conn_mtx);
+
+        for (auto& pair : activeConsumers) {
+            std::string msg = "SYS server shutting down\n";
+            write(pair.second, msg.c_str(), msg.size());
+            shutdown(pair.second, SHUT_RDWR);
+            close(pair.second);
+        }
+
+        activeConsumers.clear();
+    }
 
     storage.compact();
     std::cout << "Final compaction completed" << std::endl;
@@ -86,11 +133,7 @@ void Server::handleClient(int client_fd) {
     while (running) {
         int bytes = read(client_fd, temp, sizeof(temp) - 1);
         if (bytes <= 0) {
-            if (!state.consumerName.empty()) {
-                std::lock_guard<std::mutex> lock(conn_mtx);
-                activeConsumers.erase(state.consumerName);
-                std::cout << "Consumer disconnected: " << state.consumerName << std::endl;
-            }
+            disconnectClient(state);
             break;
         }
 
@@ -108,6 +151,13 @@ void Server::handleClient(int client_fd) {
 
             if (!command.empty()) {
                 std::string response = processCommand(state, command);
+
+                if (response == "__DISCONNECT__") {
+                    sendResponse(client_fd, "OK goodbye");
+                    disconnectClient(state);
+                    return;
+                }
+
                 if (!response.empty()) {
                     sendResponse(client_fd, response);
                 }
@@ -125,6 +175,10 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
 
     if (cmd == "PING") {
         return "PONG";
+    }
+
+    if (cmd == "DISCONNECT") {
+        return "__DISCONNECT__";
     }
 
     if (cmd == "CONNECT") {

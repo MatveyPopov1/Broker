@@ -53,6 +53,7 @@ private:
     void sendResponse(int client_fd, const std::string& response);
     void deliverMessage(const Message& msg);
     void replayHistory(const std::string& consumerName, int client_fd);
+    void disconnectClient(ClientState& state);
 
 public:
     void start(int port);
@@ -62,6 +63,7 @@ public:
     void consumerThread();
     void retryThread();
     void compactThread();
+    void consoleThread();
     void stop();
 };
 
