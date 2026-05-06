@@ -89,7 +89,9 @@ void Server::start(int port) {
     std::thread(&Server::consumerThread, this).detach();
     std::thread(&Server::retryThread, this).detach();
     std::thread(&Server::compactThread, this).detach();
-    std::thread(&Server::consoleThread, this).detach();
+    if (interactive) {
+        std::thread(&Server::consoleThread, this).detach();
+    }
 
     logger.init("broker.log");
     logger.info("Сервер запущен на порту " + std::to_string(port));

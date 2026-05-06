@@ -24,6 +24,7 @@ class Server {
 private:
     int server_fd;
     bool running;
+    bool interactive;
 
     MessageQueue queue;
     Storage storage;
@@ -63,6 +64,10 @@ private:
     void disconnectClient(ClientState& state);
 
 public:
+    Server() : server_fd(-1), running(false), interactive(true) {}
+    void setInteractive(bool val) { interactive = val; }
+    void setConsoleLogging(bool val) { logger.setConsoleOutput(val); }
+
     void start(int port);
     void acceptClients();
     void handleClient(int client_fd);
