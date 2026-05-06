@@ -15,10 +15,13 @@
 #include <sstream>
 #include <algorithm>
 #include <cstring>
+#include <set>
+#include <vector>
 
 class Server {
 private:
     int server_fd;
+    bool running;
 
     MessageQueue queue;
     Storage storage;
@@ -30,7 +33,14 @@ private:
     std::map<std::string, int> activeConsumers;
     std::mutex conn_mtx;
 
-    std::map<uint64_t, std::chrono::steady_clock::time_point> pendingAck;
+    struct PendingMessage {
+        std::set<std::string> waitingConsumers;
+        std::string topic;
+        std::chrono::steady_clock::time_point lastRetry;
+        int retryCount;
+    };
+
+    std::map<uint64_t, PendingMessage> pendingAck;
     std::mutex ack_mtx;
 
     struct ClientState {
@@ -41,6 +51,7 @@ private:
 
     std::string processCommand(ClientState& state, const std::string& command);
     void sendResponse(int client_fd, const std::string& response);
+    void deliverMessage(const Message& msg);
 
 public:
     void start(int port);
@@ -49,6 +60,8 @@ public:
 
     void consumerThread();
     void retryThread();
+    void compactThread();
+    void stop();
 };
 
 #endif

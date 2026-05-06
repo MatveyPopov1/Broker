@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #ifndef STORAGE_H
 #define STORAGE_H
@@ -28,7 +28,7 @@ public:
     std::string readMessage(uint64_t id);
     void remove(uint64_t id);
 
-    void compact(); // 🔴 ТОП
+    void compact();
 };
 
 #endif

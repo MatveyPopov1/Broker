@@ -1,4 +1,4 @@
-﻿#include "storage.h"
+#include "storage.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <iostream>
@@ -46,12 +46,12 @@ uint64_t Storage::store(const std::string& text) {
 
 std::string Storage::readMessage(uint64_t id) {
     if (!index.exists(id))
-        return "Нет сообщения";
+        return "";
 
     IndexEntry entry = index.get(id);
 
     if (entry.deleted)
-        return "Сообщение удалено";
+        return "";
 
     lseek(data_fd, entry.offset, SEEK_SET);
 
@@ -75,7 +75,6 @@ void Storage::remove(uint64_t id) {
     index.markDeleted(id);
 }
 
-// 🔥 COMPACTION (ядро 10/10)
 void Storage::compact() {
     int new_fd = open("data_new.log", O_CREAT | O_RDWR | O_TRUNC, 0644);
 

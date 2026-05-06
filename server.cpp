@@ -1,4 +1,4 @@
-﻿#include "server.h"
+#include "server.h"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
@@ -7,8 +7,23 @@
 #include <sstream>
 #include <algorithm>
 #include <cstring>
+#include <csignal>
+
+Server* globalServer = nullptr;
+
+void signalHandler(int signum) {
+    if (globalServer) {
+        globalServer->stop();
+    }
+}
 
 void Server::start(int port) {
+    globalServer = this;
+    running = true;
+
+    signal(SIGINT, signalHandler);
+    signal(SIGTERM, signalHandler);
+
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
 
     int opt = 1;
@@ -27,15 +42,29 @@ void Server::start(int port) {
 
     std::thread(&Server::consumerThread, this).detach();
     std::thread(&Server::retryThread, this).detach();
+    std::thread(&Server::compactThread, this).detach();
 
     std::cout << "Server started on port " << port << std::endl;
 
     acceptClients();
 }
 
+void Server::stop() {
+    std::cout << "\nShutting down server..." << std::endl;
+    running = false;
+
+    storage.compact();
+    std::cout << "Final compaction completed" << std::endl;
+
+    close(server_fd);
+    exit(0);
+}
+
 void Server::acceptClients() {
-    while (true) {
+    while (running) {
         int client = accept(server_fd, nullptr, nullptr);
+        if (client < 0) continue;
+
         std::thread(&Server::handleClient, this, client).detach();
     }
 }
@@ -52,7 +81,9 @@ void Server::handleClient(int client_fd) {
 
     char temp[1024];
 
-    while (true) {
+    sendResponse(client_fd, "SYS connected to server");
+
+    while (running) {
         int bytes = read(client_fd, temp, sizeof(temp) - 1);
         if (bytes <= 0) {
             if (!state.consumerName.empty()) {
@@ -91,6 +122,10 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
     std::istringstream iss(command);
     std::string cmd;
     iss >> cmd;
+
+    if (cmd == "PING") {
+        return "PONG";
+    }
 
     if (cmd == "CONNECT") {
         std::string consumerName;
@@ -153,8 +188,7 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         int priority;
         try {
             priority = std::stoi(priorityStr);
-        }
-        catch (...) {
+        } catch (...) {
             return "ERROR priority must be integer";
         }
 
@@ -180,53 +214,96 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
             return "ERROR usage: ACK <id> <consumer>";
         }
 
-        storage.remove(id);
-        metrics.consumed++;
+        bool allAcked = false;
 
+        {
+            std::lock_guard<std::mutex> lock(ack_mtx);
+
+            auto it = pendingAck.find(id);
+            if (it != pendingAck.end()) {
+                it->second.waitingConsumers.erase(consumer);
+
+                std::cout << "ACK " << id << " from " << consumer
+                          << " (remaining: " << it->second.waitingConsumers.size() << ")" << std::endl;
+
+                if (it->second.waitingConsumers.empty()) {
+                    allAcked = true;
+                }
+            }
+        }
+
+        if (allAcked) {
+            storage.remove(id);
+
+            std::lock_guard<std::mutex> lock(ack_mtx);
+            pendingAck.erase(id);
+
+            std::cout << "Message " << id << " fully acknowledged, marked deleted" << std::endl;
+        }
+
+        metrics.consumed++;
         offsetManager.set(consumer, id);
 
-        std::lock_guard<std::mutex> lock(ack_mtx);
-        pendingAck.erase(id);
-
-        std::cout << "ACK " << id << " from " << consumer << std::endl;
         return "OK ack " + std::to_string(id);
     }
 
     return "ERROR unknown command";
 }
 
+void Server::deliverMessage(const Message& msg) {
+    auto consumers = subscriptionManager.get(msg.topic);
+
+    if (consumers.empty()) return;
+
+    std::set<std::string> waitingSet;
+    for (auto& c : consumers) {
+        waitingSet.insert(c);
+    }
+
+    {
+        std::lock_guard<std::mutex> lock(ack_mtx);
+        PendingMessage pm;
+        pm.waitingConsumers = waitingSet;
+        pm.topic = msg.topic;
+        pm.lastRetry = std::chrono::steady_clock::now();
+        pm.retryCount = 0;
+        pendingAck[msg.id] = pm;
+    }
+
+    for (auto& consumer : consumers) {
+        std::lock_guard<std::mutex> lock(conn_mtx);
+
+        if (activeConsumers.find(consumer) != activeConsumers.end()) {
+            int client = activeConsumers[consumer];
+
+            std::string out = "MSG " + std::to_string(msg.id) + " " + msg.topic + " " + msg.body + "\n";
+            write(client, out.c_str(), out.size());
+
+            std::cout << "Delivered message " << msg.id << " to " << consumer << std::endl;
+        } else {
+            std::cout << "Consumer " << consumer << " offline, message " << msg.id << " pending" << std::endl;
+        }
+    }
+}
+
 void Server::consumerThread() {
-    while (true) {
+    while (running) {
         Message msg = queue.pop();
+        if (!running) break;
 
         uint64_t id = storage.store(msg.body);
         msg.id = id;
 
-        auto consumers = subscriptionManager.get(msg.topic);
-
-        for (auto& consumer : consumers) {
-            std::lock_guard<std::mutex> lock(conn_mtx);
-
-            if (activeConsumers.find(consumer) != activeConsumers.end()) {
-                int client = activeConsumers[consumer];
-
-                std::string out = "MSG " + std::to_string(msg.id) + " " + msg.body + "\n";
-                int res = write(client, out.c_str(), out.size());
-
-                if (res > 0) {
-                    std::lock_guard<std::mutex> lock2(ack_mtx);
-                    pendingAck[msg.id] = std::chrono::steady_clock::now();
-                }
-            }
-        }
+        deliverMessage(msg);
 
         metrics.stored++;
     }
 }
 
 void Server::retryThread() {
-    while (true) {
+    while (running) {
         std::this_thread::sleep_for(std::chrono::seconds(5));
+        if (!running) break;
 
         auto now = std::chrono::steady_clock::now();
 
@@ -235,7 +312,9 @@ void Server::retryThread() {
         std::vector<uint64_t> toRetry;
 
         for (auto& p : pendingAck) {
-            auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - p.second).count();
+            if (p.second.waitingConsumers.empty()) continue;
+
+            auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - p.second.lastRetry).count();
 
             if (diff > 5) {
                 toRetry.push_back(p.first);
@@ -243,17 +322,43 @@ void Server::retryThread() {
         }
 
         for (auto& id : toRetry) {
+            auto& pm = pendingAck[id];
+
             std::string msgBody = storage.readMessage(id);
 
-            Message retryMsg;
-            retryMsg.id = id;
-            retryMsg.topic = "retry";
-            retryMsg.body = msgBody;
-            retryMsg.priority = 10;
+            for (auto& consumer : pm.waitingConsumers) {
+                std::lock_guard<std::mutex> connLock(conn_mtx);
 
-            queue.push(retryMsg);
+                if (activeConsumers.find(consumer) != activeConsumers.end()) {
+                    int client = activeConsumers[consumer];
 
-            std::cout << "Retry message " << id << std::endl;
+                    std::string out = "MSG " + std::to_string(id) + " " + pm.topic + " " + msgBody + "\n";
+                    write(client, out.c_str(), out.size());
+
+                    std::cout << "Retry message " << id << " to " << consumer
+                              << " (attempt " << pm.retryCount + 1 << ")" << std::endl;
+                }
+            }
+
+            pm.lastRetry = now;
+            pm.retryCount++;
+
+            if (pm.retryCount > 10) {
+                std::cout << "Message " << id << " exceeded max retries, dropping" << std::endl;
+                storage.remove(id);
+                pendingAck.erase(id);
+            }
         }
+    }
+}
+
+void Server::compactThread() {
+    while (running) {
+        std::this_thread::sleep_for(std::chrono::minutes(10));
+        if (!running) break;
+
+        std::cout << "Starting periodic compaction..." << std::endl;
+        storage.compact();
+        std::cout << "Periodic compaction completed" << std::endl;
     }
 }
