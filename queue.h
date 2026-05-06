@@ -1,4 +1,4 @@
-﻿#include "../message.h"
+﻿#include "../message/message.h"
 #include <queue>
 #include <mutex>
 #include <condition_variable>
