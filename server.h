@@ -1,4 +1,4 @@
-﻿#ifndef SERVER_H
+#ifndef SERVER_H
 #define SERVER_H
 
 #include "../queue/queue.h"
@@ -11,6 +11,10 @@
 #include <map>
 #include <mutex>
 #include <chrono>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <cstring>
 
 class Server {
 private:
@@ -23,13 +27,20 @@ private:
     OffsetManager offsetManager;
     SubscriptionManager subscriptionManager;
 
-    // consumer → socket
     std::map<std::string, int> activeConsumers;
     std::mutex conn_mtx;
 
-    // ACK tracking
     std::map<uint64_t, std::chrono::steady_clock::time_point> pendingAck;
     std::mutex ack_mtx;
+
+    struct ClientState {
+        int fd;
+        std::string consumerName;
+        std::string buffer;
+    };
+
+    std::string processCommand(ClientState& state, const std::string& command);
+    void sendResponse(int client_fd, const std::string& response);
 
 public:
     void start(int port);
