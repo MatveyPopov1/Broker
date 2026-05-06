@@ -7,9 +7,6 @@
 #include <sstream>
 #include <algorithm>
 
-std::mutex sub_mtx;
-std::map<std::string, std::vector<int>> subscribers;
-
 void Server::start(int port) {
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -21,7 +18,11 @@ void Server::start(int port) {
     bind(server_fd, (sockaddr*)&addr, sizeof(addr));
     listen(server_fd, 5);
 
+    offsetManager.load();
+    subscriptionManager.load();
+
     std::thread(&Server::consumerThread, this).detach();
+    std::thread(&Server::retryThread, this).detach();
 
     std::cout << "Server started on port " << port << std::endl;
 
@@ -31,47 +32,45 @@ void Server::start(int port) {
 void Server::acceptClients() {
     while (true) {
         int client = accept(server_fd, nullptr, nullptr);
-
         std::thread(&Server::handleClient, this, client).detach();
     }
 }
 
 void Server::handleClient(int client_fd) {
     char buffer[1024];
+    std::string consumerName;
 
     while (true) {
         int bytes = read(client_fd, buffer, sizeof(buffer) - 1);
         if (bytes <= 0) break;
 
         buffer[bytes] = '\0';
-
         std::string input(buffer);
 
+        // CONNECT consumer1
+        if (input.rfind("CONNECT", 0) == 0) {
+            std::istringstream iss(input);
+            std::string cmd;
+            iss >> cmd >> consumerName;
 
+            std::lock_guard<std::mutex> lock(conn_mtx);
+            activeConsumers[consumerName] = client_fd;
 
-        if (input.rfind("SUB", 0) == 0) {
-            std::string topic = input.substr(4);
-
-            // 🔥 УДАЛЯЕМ \n и \r
-            topic.erase(std::remove(topic.begin(), topic.end(), '\n'), topic.end());
-            topic.erase(std::remove(topic.begin(), topic.end(), '\r'), topic.end());
-
-            std::lock_guard<std::mutex> lock(sub_mtx);
-            subscribers[topic].push_back(client_fd);
-
-            std::cout << "Client subscribed to [" << topic << "]" << std::endl;
-
-            std::cout << "Subscribers for [" << topic << "]: "
-                << subscribers[topic].size() << std::endl;
+            std::cout << "Connected consumer: " << consumerName << std::endl;
         }
-        else if (input.rfind("ACK", 0) == 0) {
-            uint64_t id = std::stoull(input.substr(4));
 
-            storage.remove(id); // 🔥 помечаем как обработанное
-            metrics.consumed++;
+        // SUB topic consumer
+        else if (input.rfind("SUB", 0) == 0) {
+            std::istringstream iss(input);
+            std::string cmd, topic, consumer;
+            iss >> cmd >> topic >> consumer;
 
-            std::cout << "ACK received for " << id << std::endl;
+            subscriptionManager.add(topic, consumer);
+
+            std::cout << consumer << " subscribed to " << topic << std::endl;
         }
+
+        // PUB topic message priority
         else if (input.rfind("PUB", 0) == 0) {
             std::istringstream iss(input);
 
@@ -81,16 +80,10 @@ void Server::handleClient(int client_fd) {
             std::string rest;
             std::getline(iss, rest);
 
-            // 🔥 убираем \n
             rest.erase(std::remove(rest.begin(), rest.end(), '\n'), rest.end());
             rest.erase(std::remove(rest.begin(), rest.end(), '\r'), rest.end());
 
             size_t lastSpace = rest.find_last_of(' ');
-
-            if (lastSpace == std::string::npos) {
-                std::cout << "Invalid PUB format\n";
-                continue;
-            }
 
             std::string body = rest.substr(0, lastSpace);
             int priority = std::stoi(rest.substr(lastSpace + 1));
@@ -102,48 +95,87 @@ void Server::handleClient(int client_fd) {
 
             queue.push(msg);
             metrics.produced++;
+        }
 
-            std::cout << "Received PUB: [" << topic << "] " << body << std::endl;
+        // ACK id consumer
+        else if (input.rfind("ACK", 0) == 0) {
+            std::istringstream iss(input);
+
+            std::string cmd, consumer;
+            uint64_t id;
+
+            iss >> cmd >> id >> consumer;
+
+            storage.remove(id);
+            metrics.consumed++;
+
+            offsetManager.set(consumer, id);
+
+            std::lock_guard<std::mutex> lock(ack_mtx);
+            pendingAck.erase(id);
+
+            std::cout << "ACK " << id << std::endl;
         }
     }
 
     close(client_fd);
 }
+
 void Server::consumerThread() {
     while (true) {
-        if (queue.size() > 1000) {
-            Message msg = queue.pop();
-            std::string body = msg.body; // если нужен текст
-            storage.store(body);
-            metrics.stored++;
-        }
-
         Message msg = queue.pop();
 
         uint64_t id = storage.store(msg.body);
         msg.id = id;
 
-        std::lock_guard<std::mutex> lock(sub_mtx);
+        auto consumers = subscriptionManager.get(msg.topic);
 
-        std::cout << "Looking for subscribers of topic: [" << msg.topic << "]\n";
-        if (subscribers.find(msg.topic) != subscribers.end()) {
-            for (int client : subscribers[msg.topic]) {
+        for (auto& consumer : consumers) {
+
+            std::lock_guard<std::mutex> lock(conn_mtx);
+
+            if (activeConsumers.find(consumer) != activeConsumers.end()) {
+
+                int client = activeConsumers[consumer];
 
                 std::string out = "MSG " + std::to_string(msg.id) + " " + msg.body + "\n";
                 int res = write(client, out.c_str(), out.size());
 
-                if (res <= 0) {
-                    std::cout << "❌ Failed to send to client\n";
-                }
-                else {
-                    std::cout << "✅ Sent to client: " << out;
+                if (res > 0) {
+                    std::lock_guard<std::mutex> lock2(ack_mtx);
+                    pendingAck[msg.id] = std::chrono::steady_clock::now();
                 }
             }
         }
 
         metrics.stored++;
+    }
+}
 
-        std::cout << "Produced: " << metrics.produced
-            << " Stored: " << metrics.stored << std::endl;
+void Server::retryThread() {
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+
+        auto now = std::chrono::steady_clock::now();
+
+        std::lock_guard<std::mutex> lock(ack_mtx);
+
+        for (auto& p : pendingAck) {
+            auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - p.second).count();
+
+            if (diff > 5) {
+                std::string msg = storage.readMessage(p.first);
+
+                Message retryMsg;
+                retryMsg.id = p.first;
+                retryMsg.topic = "retry";
+                retryMsg.body = msg;
+                retryMsg.priority = 10;
+
+                queue.push(retryMsg);
+
+                std::cout << "Retry " << p.first << std::endl;
+            }
+        }
     }
 }
