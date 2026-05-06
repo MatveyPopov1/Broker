@@ -6,8 +6,8 @@ add_executable(run_tests
     test_user.cpp
     test_queue.cpp
     test_offset.cpp
-    ${CMAKE_SOURCE_DIR}/index/index.cpp
-    ${CMAKE_SOURCE_DIR}/storage/storage.cpp
+    ../index/index.cpp
+    ../storage/storage.cpp
 )
 
 target_include_directories(run_tests PRIVATE ${CMAKE_SOURCE_DIR})

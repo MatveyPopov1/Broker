@@ -1,0 +1,5 @@
+build/
+*.dat
+*.log
+*.idx
+
