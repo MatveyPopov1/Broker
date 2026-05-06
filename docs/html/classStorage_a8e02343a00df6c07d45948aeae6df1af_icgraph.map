@@ -1,0 +1,20 @@
+<map id="Storage::compact" name="Storage::compact">
+<area shape="rect" id="Node000001" title="Выполняет компактирование журнала." alt="" coords="735,44,871,69"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a7a27aaa2869a2be86e3d67aba43fc4e2" title="Поток периодического компактирования хранилища." alt="" coords="513,5,687,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="722,44,666,33,667,28,723,39"/>
+<area shape="rect" id="Node000006" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="550,68,650,93"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="721,69,651,77,650,72,720,64"/>
+<area shape="rect" id="Node000003" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,68,251,93"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="500,14,402,16,350,22,299,33,256,50,221,70,218,66,254,45,298,27,349,17,401,11,500,9"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,68,80,93"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,83,80,83,80,78,134,78"/>
+<area shape="rect" id="Node000005" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,117,100,143"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="149,100,92,120,91,115,147,95"/>
+<area shape="poly" id="edge10_Node000006_Node000005" title=" " alt="" coords="561,101,516,119,466,133,364,144,262,147,171,144,100,138,100,133,171,138,262,142,364,139,465,127,515,114,560,96"/>
+<area shape="rect" id="Node000007" href="$classServer.html#a13a1648f4fe17aad0e3bdca01f4e6270" title="Поток консольного управления сервером." alt="" coords="299,43,465,68"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="536,76,465,68,466,62,537,71"/>
+<area shape="rect" id="Node000008" href="$server_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61" title=" " alt="" coords="326,92,438,117"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="537,90,438,101,438,96,536,85"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="286,71,251,76,250,71,285,66"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="312,98,251,90,251,85,312,93"/>
+</map>

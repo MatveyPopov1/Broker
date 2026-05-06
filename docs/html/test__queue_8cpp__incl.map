@@ -1,0 +1,21 @@
+<map id="tests/test_queue.cpp" name="tests/test_queue.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="106,5,263,31"/>
+<area shape="rect" id="Node000002" href="$doctest_8h.html" title=" " alt="" coords="78,79,161,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,33,141,70,137,67,172,29"/>
+<area shape="rect" id="Node000004" href="$queue_8h.html" title=" " alt="" coords="262,79,393,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="209,28,293,70,291,75,206,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,79,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,106,67,144,63,141,105,102"/>
+<area shape="rect" id="Node000005" href="$message_8h.html" title=" " alt="" coords="103,152,271,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="306,106,223,148,221,143,304,102"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="296,152,359,177"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="330,104,330,138,325,138,325,104"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="383,152,447,177"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="343,102,392,141,389,145,340,106"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="472,152,615,177"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="363,101,496,145,495,150,361,107"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="114,225,173,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="182,179,160,215,155,212,178,176"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="197,225,263,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="197,176,218,212,214,215,192,179"/>
+</map>

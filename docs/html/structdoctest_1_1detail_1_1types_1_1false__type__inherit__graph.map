@@ -1,0 +1,21 @@
+<map id="doctest::detail::types::false_type" name="doctest::detail::types::false_type">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,277,164,317"/>
+<area shape="rect" id="Node000002" href="$structdoctest_1_1detail_1_1deferred__false.html" title=" " alt="" coords="224,5,403,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,263,108,217,132,161,166,104,187,78,210,55,229,43,231,48,214,59,191,82,170,107,137,163,113,219,97,265"/>
+<area shape="rect" id="Node000003" href="$structdoctest_1_1detail_1_1has__insertion__operator.html" title=" " alt="" coords="234,70,393,125"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,264,146,199,176,165,210,135,233,122,235,126,214,139,180,169,151,203,106,267"/>
+<area shape="rect" id="Node000004" href="$structdoctest_1_1detail_1_1is__container.html" title=" " alt="" coords="212,149,415,189"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="116,266,160,231,211,199,238,187,240,192,213,204,163,236,120,270"/>
+<area shape="rect" id="Node000005" href="$structdoctest_1_1detail_1_1is__pair.html" title=" " alt="" coords="230,213,397,253"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="169,271,241,251,242,256,170,276"/>
+<area shape="rect" id="Node000006" href="$structdoctest_1_1detail_1_1is__std__string.html" title=" " alt="" coords="222,277,405,317"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="178,295,222,295,222,300,178,300"/>
+<area shape="rect" id="Node000007" href="$structdoctest_1_1detail_1_1types_1_1is__array.html" title=" " alt="" coords="234,341,393,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="170,318,242,339,241,344,169,324"/>
+<area shape="rect" id="Node000008" href="$structdoctest_1_1detail_1_1types_1_1is__pointer.html" title=" " alt="" coords="234,405,393,445"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="120,325,163,359,213,391,240,403,238,408,211,396,160,363,116,329"/>
+<area shape="rect" id="Node000009" href="$structdoctest_1_1detail_1_1types_1_1is__rvalue__reference.html" title=" " alt="" coords="215,469,411,509"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="106,328,150,393,179,426,214,455,235,467,232,472,210,460,176,430,145,396,101,331"/>
+<area shape="rect" id="Node000010" href="$structdoctest_1_1detail_1_1types_1_1is__same.html" title=" " alt="" coords="234,533,393,573"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="98,330,115,373,139,424,172,475,214,519,235,532,232,537,210,523,168,478,134,426,110,375,93,331"/>
+</map>

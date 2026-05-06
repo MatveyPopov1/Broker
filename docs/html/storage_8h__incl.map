@@ -1,0 +1,13 @@
+<map id="storage/storage.h" name="storage/storage.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="45,5,181,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,64,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,33,59,71,56,68,99,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="88,79,139,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,31,116,65,111,65,111,31"/>
+<area shape="rect" id="Node000004" href="$index_8h.html" title=" " alt="" coords="163,79,285,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,28,196,69,193,73,130,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="102,152,226,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="216,106,185,143,180,140,212,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="251,152,317,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="236,103,268,140,263,143,232,106"/>
+</map>

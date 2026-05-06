@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$structdoctest_1_1detail_1_1types_1_1true__type.html" title=" " alt="" coords="5,517,164,557"/>
+<area shape="rect" id="Node000001" href="$structdoctest_1_1detail_1_1has__insertion__operator_3_01T_00_01decltype_07operator_3_3_07declvald5a5a279653bbfeef238ad5c984744e2.html" title=" " alt="" coords="239,5,432,104"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="85,503,92,427,112,324,128,269,149,214,176,162,210,114,237,91,240,95,214,118,181,165,154,216,133,271,117,326,98,427,90,504"/>
+<area shape="rect" id="Node000002" href="$structdoctest_1_1detail_1_1is__container_3_01T_00_01types_1_1void__t_3_01typename_01T_1_1value__8b46371e09d85b3c0683c1662c7f674e.html" title=" " alt="" coords="242,128,429,256"/>
+<area shape="poly" id="edge15_Node000000_Node000002" title=" " alt="" coords="92,503,108,454,133,392,167,326,210,266,240,239,243,243,214,270,171,329,138,394,113,455,97,505"/>
+<area shape="rect" id="Node000003" href="$structdoctest_1_1detail_1_1is__pair_3_01T_00_01types_1_1void__t_3_01typename_01T_1_1first__type_33066fab692ee0ed0634327bb9805408.html" title=" " alt="" coords="231,281,440,394"/>
+<area shape="poly" id="edge16_Node000000_Node000003" title=" " alt="" coords="109,505,154,455,210,405,229,391,232,396,214,409,158,459,113,508"/>
+<area shape="rect" id="Node000004" href="$structdoctest_1_1detail_1_1is__std__string_3_01T_00_01typename_01types_1_1enable__if_3_01types_1817f288553c5d5c2e121ed7b2e64fe63.html" title=" " alt="" coords="212,419,459,547"/>
+<area shape="poly" id="edge17_Node000000_Node000004" title=" " alt="" coords="177,515,211,507,212,512,178,520"/>
+<area shape="rect" id="Node000005" href="$structdoctest_1_1detail_1_1types_1_1is__array_3_01T_0fSIZE_0e_4.html" title=" " alt="" coords="256,571,415,611"/>
+<area shape="poly" id="edge18_Node000000_Node000005" title=" " alt="" coords="178,554,256,571,255,576,177,560"/>
+<area shape="rect" id="Node000006" href="$structdoctest_1_1detail_1_1types_1_1is__pointer_3_01T_01_5_01_4.html" title=" " alt="" coords="256,635,415,675"/>
+<area shape="poly" id="edge19_Node000000_Node000006" title=" " alt="" coords="123,564,165,594,213,620,257,636,255,641,211,625,162,598,120,568"/>
+<area shape="rect" id="Node000007" href="$structdoctest_1_1detail_1_1types_1_1is__rvalue__reference_3_01T_01_6_6_01_4.html" title=" " alt="" coords="256,699,415,754"/>
+<area shape="poly" id="edge20_Node000000_Node000007" title=" " alt="" coords="107,568,152,627,181,658,213,684,257,706,254,710,211,689,177,662,148,631,103,571"/>
+<area shape="rect" id="Node000008" href="$structdoctest_1_1detail_1_1types_1_1is__same_3_01T_00_01T_01_4.html" title=" " alt="" coords="256,779,415,819"/>
+<area shape="poly" id="edge21_Node000000_Node000008" title=" " alt="" coords="98,570,113,614,137,666,171,719,191,743,214,763,234,776,256,785,254,790,231,780,210,767,187,746,166,722,133,669,108,616,93,571"/>
+</map>

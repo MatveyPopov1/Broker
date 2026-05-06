@@ -1,0 +1,15 @@
+<map id="signalHandler" name="signalHandler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,117,105"/>
+<area shape="rect" id="Node000002" href="$classServer.html#a07c45a7e101a3926d8f9685c3c5d14e4" title="Корректно завершает работу сервера." alt="" coords="165,80,265,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,90,152,90,152,95,118,95"/>
+<area shape="rect" id="Node000003" href="$classStorage.html#a8e02343a00df6c07d45948aeae6df1af" title="Выполняет компактирование журнала." alt="" coords="313,55,449,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,82,299,77,300,82,266,88"/>
+<area shape="rect" id="Node000006" href="$classLogger.html#ab4c4d86279176eb0ede726bc5b4d5ddb" title=" " alt="" coords="332,104,431,129"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="266,97,318,105,318,110,265,103"/>
+<area shape="rect" id="Node000004" href="$classIndex.html#ae93b1062318d9248e6968eb5df351de0" title=" " alt="" coords="504,5,595,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="424,52,491,32,493,37,426,57"/>
+<area shape="rect" id="Node000005" href="$classIndex.html#abe0d1a7ffebaf3156078e44e540d165a" title=" " alt="" coords="497,55,601,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="449,65,484,65,484,70,449,70"/>
+<area shape="rect" id="Node000007" href="$classLogger.html#a3d3f0801eeaf39b33a906ea8569c19b2" title=" " alt="" coords="502,104,597,129"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="431,114,488,114,488,119,431,119"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="Index::markDeleted" name="Index::markDeleted">
+<area shape="rect" id="Node000001" title=" " alt="" coords="673,104,824,129"/>
+<area shape="rect" id="Node000002" href="$classStorage.html#a1dd31db0fd01325e449b45fb18a0e555" title="Помечает сообщение удаленным в индексе." alt="" coords="495,55,625,80"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="686,103,609,83,610,78,687,98"/>
+<area shape="rect" id="Node000008" href="$test__index_8cpp.html#ac8acf058bbf81b32148a2c9885f6c448" title=" " alt="" coords="513,104,607,129"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="660,119,608,119,608,114,660,114"/>
+<area shape="rect" id="Node000009" href="$test__index_8cpp.html#a4cba1ed2feb987745730fc126dbdca42" title=" " alt="" coords="513,153,607,179"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="687,135,608,156,607,151,686,130"/>
+<area shape="rect" id="Node000003" href="$classServer.html#ace7feff63a51f611e51531490dee7c09" title="Поток повторной отправки неподтвержденных сообщений." alt="" coords="299,31,447,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="481,60,446,55,447,50,482,55"/>
+<area shape="rect" id="Node000007" href="$test__storage_8cpp.html#a80f8f3e18bb96d2f5ceee3028bc47775" title=" " alt="" coords="325,80,420,105"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="482,81,421,89,420,84,481,75"/>
+<area shape="rect" id="Node000004" href="$classServer.html#a7ebba75484fe844bb3e2920205455a74" title="Запускает сервер на указанном порту." alt="" coords="148,31,251,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="285,46,251,46,251,41,285,41"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="25,5,80,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="134,35,80,25,81,20,135,29"/>
+<area shape="rect" id="Node000006" href="$test__integration_8cpp.html#a9117630fd4b7e94e5711ce3e2b78f1d3" title=" " alt="" coords="5,55,100,80"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="135,57,101,62,100,57,134,51"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Server::consumerThread" name="Server::consumerThread">
+<area shape="rect" id="Node000001" title="Поток обработки очереди сообщений." alt="" coords="5,31,187,56"/>
+<area shape="rect" id="Node000002" href="$classMessageQueue.html#a28ef0b13d8402a1d857192708aeb21e5" title=" " alt="" coords="235,5,389,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,30,221,26,221,31,188,35"/>
+<area shape="rect" id="Node000003" href="$classStorage.html#a55e0c2b5d656030c99ee05a6b22d9d47" title="Сохраняет сообщение в журнал." alt="" coords="255,55,369,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,51,242,57,241,62,187,56"/>
+<area shape="rect" id="Node000004" href="$classIndex.html#ae93b1062318d9248e6968eb5df351de0" title=" " alt="" coords="437,55,528,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="369,65,423,65,423,70,369,70"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Storage::readMessage" name="Storage::readMessage">
+<area shape="rect" id="Node000001" title="Читает тело сообщения по идентификатору." alt="" coords="5,31,172,56"/>
+<area shape="rect" id="Node000002" href="$classIndex.html#a65d36d7dddfbc98c7218252807f8e918" title=" " alt="" coords="220,5,325,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,29,206,24,206,30,173,34"/>
+<area shape="rect" id="Node000003" href="$classIndex.html#abe764c4869b497fee61ed0e7f9893c29" title=" " alt="" coords="229,55,316,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,52,216,57,215,63,172,57"/>
+</map>

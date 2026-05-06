@@ -1,0 +1,23 @@
+<map id="TEST_CASE" name="TEST_CASE">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,273,100,299"/>
+<area shape="rect" id="Node000002" href="$classSubscriptionManager.html#aa8621b437f5ea5bc1219e7fd7205e9c4" title="Подписывает потребителя на топик." alt="" coords="148,5,339,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,273,58,229,74,166,101,99,122,68,146,41,154,35,157,40,150,45,126,72,106,102,79,168,64,230,58,274"/>
+<area shape="rect" id="Node000003" href="$classSubscriptionManager.html#a3a46d4975eb1e0dfe55997ef30edb6b5" title="Добавляет топик в общий список (без подписчиков)." alt="" coords="164,55,323,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="55,272,65,239,83,194,110,147,146,105,153,100,156,105,150,109,114,150,88,197,70,241,60,274"/>
+<area shape="rect" id="Node000004" href="$classSubscriptionManager.html#ac95fb382f43d80f669cbf57eaa62e9ff" title="Возвращает список подписчиков топика." alt="" coords="149,120,337,145"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="57,272,90,216,115,183,146,156,159,149,162,153,150,160,119,187,94,219,62,275"/>
+<area shape="rect" id="Node000005" href="$classSubscriptionManager.html#ae7e563370880cf05889eeb4b8219ebe0" title="Возвращает список активных топиков." alt="" coords="164,170,323,210"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="68,271,103,246,147,220,162,213,164,218,149,224,106,250,71,275"/>
+<area shape="rect" id="Node000006" href="$classSubscriptionManager.html#a1e1c1bf57481b8f6c81eaabb0daec051" title="Возвращает копию всей мапы активных подписок." alt="" coords="164,234,323,274"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="100,275,150,267,151,272,101,281"/>
+<area shape="rect" id="Node000007" href="$classSubscriptionManager.html#a64e3ae30ac63c5cd4b096c12522195fb" title="Возвращает список подписок конкретного потребителя." alt="" coords="164,298,323,338"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="101,291,151,300,150,305,100,297"/>
+<area shape="rect" id="Node000008" href="$classSubscriptionManager.html#ad4d1b0aeb03aa23e8c201b36d20ee53f" title="Возвращает список всех известных топиков." alt="" coords="164,362,323,402"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="71,297,106,322,149,348,164,354,162,359,147,352,103,326,68,301"/>
+<area shape="rect" id="Node000009" href="$classSubscriptionManager.html#a70647c47e0fbe2d3cc2102fab985b866" title="Загружает подписки и топики из файлов при старте сервера." alt="" coords="164,426,323,466"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="62,298,95,353,120,384,150,412,158,417,155,422,146,416,116,388,90,356,58,300"/>
+<area shape="rect" id="Node000010" href="$classSubscriptionManager.html#a74a138b184e78eb3a185cef19779dde0" title="Отписывает потребителя от топика." alt="" coords="164,490,323,530"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="59,298,69,333,86,381,113,432,130,455,150,476,155,480,152,485,146,480,126,459,108,435,81,383,64,335,54,300"/>
+<area shape="rect" id="Node000011" href="$classSubscriptionManager.html#a2d0f2dd4ee4e20955b976f44927313ff" title="Проверяет существование топика в общем списке." alt="" coords="164,554,323,594"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="58,298,63,344,78,408,106,479,126,511,150,540,154,544,151,548,146,544,121,514,101,481,73,410,58,345,52,299"/>
+</map>

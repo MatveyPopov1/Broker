@@ -1,0 +1,19 @@
+<map id="tests/test_offset.cpp" name="tests/test_offset.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="130,5,285,31"/>
+<area shape="rect" id="Node000002" href="$doctest_8h.html" title=" " alt="" coords="19,79,102,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,33,98,75,96,70,183,28"/>
+<area shape="rect" id="Node000004" href="$offset_8h.html" title=" " alt="" coords="145,79,269,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,31,210,65,205,65,205,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="294,79,355,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="228,28,295,69,292,74,225,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,79,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="60,105,51,140,46,138,55,104"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="103,152,154,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="196,106,153,145,150,141,193,102"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="178,152,237,177"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="210,104,210,138,205,138,205,104"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="261,152,335,177"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="224,102,274,141,271,145,220,106"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="359,152,426,177"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="238,102,351,145,349,149,236,107"/>
+</map>
