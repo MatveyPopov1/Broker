@@ -213,10 +213,81 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
             return "ERROR usage: SUB <topic> <consumer>";
         }
 
-        subscriptionManager.add(topic, consumer);
+        bool added = subscriptionManager.add(topic, consumer);
 
-        std::cout << consumer << " subscribed to " << topic << std::endl;
-        return "OK subscribed to " + topic;
+        if (added) {
+            std::cout << consumer << " subscribed to " << topic << std::endl;
+            return "OK subscribed to " + topic;
+        } else {
+            return "ERROR already subscribed to " + topic;
+        }
+    }
+
+    if (cmd == "UNSUB") {
+        std::string topic, consumer;
+        iss >> topic >> consumer;
+
+        if (topic.empty() || consumer.empty()) {
+            return "ERROR usage: UNSUB <topic> <consumer>";
+        }
+
+        bool removed = subscriptionManager.remove(topic, consumer);
+
+        if (removed) {
+            std::cout << consumer << " unsubscribed from " << topic << std::endl;
+            return "OK unsubscribed from " + topic;
+        } else {
+            return "ERROR not subscribed to " + topic;
+        }
+    }
+
+    if (cmd == "LIST_TOPICS") {
+        auto topics = subscriptionManager.getTopics();
+
+        if (topics.empty()) {
+            return "OK no topics available";
+        }
+
+        std::string response = "OK topics:";
+        for (auto& t : topics) {
+            response += " " + t;
+        }
+        return response;
+    }
+
+    if (cmd == "LIST_ACTIVE_TOPICS") {
+        auto topics = subscriptionManager.getActiveTopics();
+
+        if (topics.empty()) {
+            return "OK no active topics";
+        }
+
+        std::string response = "OK active topics:";
+        for (auto& t : topics) {
+            response += " " + t;
+        }
+        return response;
+    }
+
+    if (cmd == "LIST_SUBS") {
+        std::string consumer;
+        iss >> consumer;
+
+        if (consumer.empty()) {
+            return "ERROR usage: LIST_SUBS <consumer>";
+        }
+
+        auto subs = subscriptionManager.getSubscriptions(consumer);
+
+        if (subs.empty()) {
+            return "OK no active subscriptions for " + consumer;
+        }
+
+        std::string response = "OK subscriptions for " + consumer + ":";
+        for (auto& s : subs) {
+            response += " " + s;
+        }
+        return response;
     }
 
     if (cmd == "PUB") {
@@ -248,6 +319,8 @@ std::string Server::processCommand(ClientState& state, const std::string& comman
         } catch (...) {
             return "ERROR priority must be integer";
         }
+
+        subscriptionManager.ensureTopic(topic);
 
         Message msg;
         msg.topic = topic;
