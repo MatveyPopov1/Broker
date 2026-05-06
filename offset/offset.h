@@ -1,9 +1,10 @@
-﻿#ifndef OFFSET_H
+#ifndef OFFSET_H
 #define OFFSET_H
 
 #include <map>
 #include <string>
 #include <fstream>
+#include <cstdint>
 
 class OffsetManager {
 private:
